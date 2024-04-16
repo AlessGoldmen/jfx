@@ -1,23 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<projectDescription>
-	<name>3DViewer</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
-	</natures>
-</projectDescription>
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class Launcher extends Application {
+
+    @Override
+    public void start(Stage primaryStage) {
+        // Création d'un StackPane comme racine de la scène
+        StackPane root = new StackPane();
+
+        // Chargement de l'image pour l'arrière-plan
+        Image backgroundImage = new Image("file:///chemin/vers/votre/image/background.jpg");
+
+        // Création de l'arrière-plan avec l'image chargée
+        BackgroundImage background = new BackgroundImage(
+                backgroundImage,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false)
+        );
+
+        // Application de l'arrière-plan au StackPane
+        root.setBackground(new Background(background));
+
+        // Création de la scène avec la racine (StackPane)
+        Scene scene = new Scene(root, 800, 600);
+
+        // Configuration de la scène sur la fenêtre principale (Stage)
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Minecraft Launcher");
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
